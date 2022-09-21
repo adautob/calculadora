@@ -14,8 +14,18 @@ public class Calculadora extends javax.swing.JFrame {
     /**
      * Creates new form Calculadora
      */
+    StringBuilder visor;
+    StringBuilder termo;
+    char sinal;
+    Double resultado;
+    
     public Calculadora() {
         initComponents();
+        termo = new StringBuilder("");
+        visor = new StringBuilder("0");
+        sinal = '+';
+        resultado = 0d;
+        atualizaVisor();
     }
 
     /**
@@ -58,7 +68,6 @@ public class Calculadora extends javax.swing.JFrame {
         jTextVisor.setBackground(new java.awt.Color(255, 255, 255));
         jTextVisor.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jTextVisor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextVisor.setText("0");
         jTextVisor.setActionCommand("<Not Set>");
         jTextVisor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -333,87 +342,125 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");
-        jTextVisor.setText(jTextVisor.getText()+"7");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("7");
+        calcular();
+        atualizaVisor();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");
-        jTextVisor.setText(jTextVisor.getText()+"8");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("8");
+        atualizaVisor();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");
-        jTextVisor.setText(jTextVisor.getText()+"9");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("9");
+        atualizaVisor();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");
-        jTextVisor.setText(jTextVisor.getText()+"4");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("4");
+        atualizaVisor();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");        
-        jTextVisor.setText(jTextVisor.getText()+"5");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("5");
+        atualizaVisor();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");        
-        jTextVisor.setText(jTextVisor.getText()+"6");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("6");
+        atualizaVisor();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");        
-        jTextVisor.setText(jTextVisor.getText()+"1");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("1");
+        atualizaVisor();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");        
-        jTextVisor.setText(jTextVisor.getText()+"2");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("2");
+        atualizaVisor();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");        
-        jTextVisor.setText(jTextVisor.getText()+"3");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("3");
+        atualizaVisor();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton0ActionPerformed
-        if (jTextVisor.getText().equals("0"))
-            jTextVisor.setText("");        
-        jTextVisor.setText(jTextVisor.getText()+"0");
+        if (visor.toString().equals("0"))
+            visor = new StringBuilder("");
+        visor.append("0");
+        atualizaVisor();
     }//GEN-LAST:event_jButton0ActionPerformed
 
     private void jButtonDecimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecimalActionPerformed
-        jTextVisor.setText(jTextVisor.getText()+",");
+        
+        
+        String s = visor.toString();
+        
+        /*int ultimoOperador = 0;
+        
+        if (s.lastIndexOf('+')>s.lastIndexOf('-'))
+            ultimoOperador = s.lastIndexOf('+');
+        else
+        
+        */
+        
+        visor.append(",");
+        atualizaVisor();
     }//GEN-LAST:event_jButtonDecimalActionPerformed
 
     private void jButtonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDividirActionPerformed
-        jTextVisor.setText(jTextVisor.getText()+"/");
+        String s = visor.toString();
+        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+            visor.append("/");
+        atualizaVisor();
     }//GEN-LAST:event_jButtonDividirActionPerformed
 
     private void jButtonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiplicarActionPerformed
-        jTextVisor.setText(jTextVisor.getText()+"*");
+        String s = visor.toString();
+        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+            visor.append("*");
+        atualizaVisor();
     }//GEN-LAST:event_jButtonMultiplicarActionPerformed
 
     private void jButtonSubtrairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubtrairActionPerformed
-        jTextVisor.setText(jTextVisor.getText()+"-");
+        String s = visor.toString();
+        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+            visor.append("-");
+        atualizaVisor();
     }//GEN-LAST:event_jButtonSubtrairActionPerformed
 
     private void jButtonSomarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSomarActionPerformed
-        jTextVisor.setText(jTextVisor.getText()+"+");
+        String s = visor.toString();
+        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+            visor.append("+");
+        atualizaVisor();
+
     }//GEN-LAST:event_jButtonSomarActionPerformed
 
     private void jButtonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCActionPerformed
-        jTextVisor.setText("0");
+        visor = new StringBuilder("0");
+        atualizaVisor();
     }//GEN-LAST:event_jButtonCActionPerformed
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
@@ -479,13 +526,24 @@ public class Calculadora extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void removerUltimoCaractere() {
-        if (!jTextVisor.getText().equals("0")){
-            StringBuilder sb = new StringBuilder(jTextVisor.getText());
-            sb.deleteCharAt(sb.length()-1);
-            jTextVisor.setText(new String(sb));
-            if (jTextVisor.getText().equals(""))
-                jTextVisor.setText("0");
+        if (!visor.toString().equals("0")){
+            visor.deleteCharAt(visor.length()-1);
+            atualizaVisor();
+            if (visor.toString().equals(""))
+                visor = new StringBuilder("0");
+            atualizaVisor();
         }
         
+    }
+
+    private void atualizaVisor() {
+        jTextVisor.setText(visor.toString());
+    }
+
+    private void calcular() {
+        String s = "o gato roeu";
+        String[] arraysStr = s.split(" ");
+        System.out.println(arraysStr[1]);
+ 
     }
 }
