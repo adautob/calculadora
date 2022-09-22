@@ -5,6 +5,8 @@
  */
 package com.app.calculadora;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author adauto
@@ -23,7 +25,6 @@ public class Calculadora extends javax.swing.JFrame {
         initComponents();
         termo = new StringBuilder("");
         visor = new StringBuilder("0");
-        sinal = '+';
         resultado = 0d;
         atualizaVisor();
     }
@@ -57,6 +58,7 @@ public class Calculadora extends javax.swing.JFrame {
         jButtonSomar = new javax.swing.JButton();
         jButtonSubtrair = new javax.swing.JButton();
         jButtonC = new javax.swing.JButton();
+        jLabelTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(264, 368));
@@ -171,7 +173,7 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        jButtonDecimal.setText(",");
+        jButtonDecimal.setText(".");
         jButtonDecimal.setMaximumSize(new java.awt.Dimension(50, 50));
         jButtonDecimal.setMinimumSize(new java.awt.Dimension(50, 50));
         jButtonDecimal.setPreferredSize(new java.awt.Dimension(60, 60));
@@ -246,6 +248,8 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
+        jLabelTotal.setText("Total: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,7 +261,7 @@ public class Calculadora extends javax.swing.JFrame {
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextVisor, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +294,10 @@ public class Calculadora extends javax.swing.JFrame {
                                     .addComponent(jButtonMultiplicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonSubtrair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonSomar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -300,8 +307,13 @@ public class Calculadora extends javax.swing.JFrame {
                 .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jTextVisor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabelTotal)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -345,6 +357,7 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("7");
+        termo.append("7");
         calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -353,6 +366,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("8");
+        termo.append("8");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -360,6 +375,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("9");
+        termo.append("9");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -367,6 +384,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("4");
+        termo.append("4");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -374,6 +393,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("5");
+        termo.append("5");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -381,6 +402,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("6");
+        termo.append("6");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -388,6 +411,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("1");
+        termo.append("1");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -395,6 +420,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("2");
+        termo.append("2");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -402,6 +429,8 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("3");
+        termo.append("3");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -409,57 +438,89 @@ public class Calculadora extends javax.swing.JFrame {
         if (visor.toString().equals("0"))
             visor = new StringBuilder("");
         visor.append("0");
+        termo.append("0");
+        calcular();
         atualizaVisor();
     }//GEN-LAST:event_jButton0ActionPerformed
 
     private void jButtonDecimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecimalActionPerformed
+        String t = termo.toString();
+        String v = visor.toString();
         
+        if (!t.contains("."))
+            if (!v.endsWith("+")
+                &&!v.endsWith("-")
+                &&!v.endsWith("*")
+                &&!v.endsWith("/")
+                &&!v.endsWith(".")){
+                    visor.append(".");
+                    termo.append(".");
+                }
+            
         
-        String s = visor.toString();
-        
-        /*int ultimoOperador = 0;
-        
-        if (s.lastIndexOf('+')>s.lastIndexOf('-'))
-            ultimoOperador = s.lastIndexOf('+');
-        else
-        
-        */
-        
-        visor.append(",");
         atualizaVisor();
     }//GEN-LAST:event_jButtonDecimalActionPerformed
 
     private void jButtonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDividirActionPerformed
         String s = visor.toString();
-        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+        if (!s.endsWith("+")
+                &&!s.endsWith("-")
+                &&!s.endsWith("*")
+                &&!s.endsWith("/")
+                &&!s.endsWith(".")){
             visor.append("/");
+            termo = new StringBuilder("");
+        }
+        
         atualizaVisor();
     }//GEN-LAST:event_jButtonDividirActionPerformed
 
     private void jButtonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiplicarActionPerformed
         String s = visor.toString();
-        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+        if (!s.endsWith("+")
+                &&!s.endsWith("-")
+                &&!s.endsWith("*")
+                &&!s.endsWith("/")
+                &&!s.endsWith(".")){
             visor.append("*");
+            termo = new StringBuilder("");
+        }
+        
         atualizaVisor();
     }//GEN-LAST:event_jButtonMultiplicarActionPerformed
 
     private void jButtonSubtrairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubtrairActionPerformed
         String s = visor.toString();
-        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+        if (!s.endsWith("+")
+                &&!s.endsWith("-")
+                &&!s.endsWith("*")
+                &&!s.endsWith("/")
+                &&!s.endsWith(".")){
             visor.append("-");
+            termo = new StringBuilder("");
+        }
+        
         atualizaVisor();
     }//GEN-LAST:event_jButtonSubtrairActionPerformed
 
     private void jButtonSomarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSomarActionPerformed
         String s = visor.toString();
-        if (!s.endsWith("+")&&!s.endsWith("-")&&!s.endsWith("*")&&!s.endsWith("/"))
+        if (!s.endsWith("+")
+                &&!s.endsWith("-")
+                &&!s.endsWith("*")
+                &&!s.endsWith("/")
+                &&!s.endsWith(".")){
             visor.append("+");
+            termo = new StringBuilder("");
+        }
+        
         atualizaVisor();
 
     }//GEN-LAST:event_jButtonSomarActionPerformed
 
     private void jButtonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCActionPerformed
         visor = new StringBuilder("0");
+        termo = new StringBuilder("");
         atualizaVisor();
     }//GEN-LAST:event_jButtonCActionPerformed
 
@@ -522,17 +583,26 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSomar;
     private javax.swing.JButton jButtonSubtrair;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelTotal;
     private javax.swing.JTextField jTextVisor;
     // End of variables declaration//GEN-END:variables
 
     private void removerUltimoCaractere() {
-        if (!visor.toString().equals("0")){
+        if (visor.length()>0){
             visor.deleteCharAt(visor.length()-1);
+            termo.deleteCharAt(termo.length()-1);
             atualizaVisor();
-            if (visor.toString().equals(""))
-                visor = new StringBuilder("0");
-            atualizaVisor();
+        }else if (visor.toString().equals("")){
+            visor = new StringBuilder("0");
+            termo = new StringBuilder("");
         }
+            
+                
+            
+            
+            atualizaVisor();
+            //calcular();
+   
         
     }
 
@@ -541,9 +611,53 @@ public class Calculadora extends javax.swing.JFrame {
     }
 
     private void calcular() {
-        String s = "o gato roeu";
-        String[] arraysStr = s.split(" ");
-        System.out.println(arraysStr[1]);
- 
+        String v = visor.toString();
+        if ((v.endsWith("+"))
+                ||(v.endsWith("-"))
+                ||(v.endsWith("*"))
+                ||(v.endsWith("/"))){
+            v = v.substring(0, v.length()-1);
+            System.out.println(v);
+        }
+        StringBuilder o = new StringBuilder("");
+        String[] arrayVisor = v.split("\\+|\\-|\\*|\\/");
+        System.out.println(arrayVisor.length);
+        
+        for (int i = 0; i < v.length(); i++){
+            if ((!Character.isDigit(v.charAt(i))) && (v.charAt(i)!='.'))
+                o.append(v.charAt(i));
+        }
+        
+        System.out.println(o.length());
+        System.out.println(arrayVisor[0]);
+        System.out.println("--------");
+        resultado = Double.parseDouble(arrayVisor[0]);
+        
+        try {
+            for (int i = 0; i < o.length(); i++){
+                switch (o.charAt(i)) {
+                    case '+':
+                        resultado += Double.parseDouble(arrayVisor[i+1]);
+                        break;
+                    case '-':
+                        resultado -= Double.parseDouble(arrayVisor[i+1]);
+                        break;
+                    case '*':
+                        resultado *= Double.parseDouble(arrayVisor[i+1]);
+                        break;
+                    case '/':
+                        resultado /= Double.parseDouble(arrayVisor[i+1]);
+                        break;
+                    default:
+                        break;
+                }
+            }        
+        } catch(ArithmeticException e){
+            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro: "+e.getMessage());
+        }
+     
+        System.out.println(resultado);
+        jLabelTotal.setText("Total: " + resultado);
+
     }
 }
