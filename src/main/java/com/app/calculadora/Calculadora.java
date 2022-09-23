@@ -23,7 +23,7 @@ public class Calculadora extends javax.swing.JFrame {
     
     public Calculadora() {
         initComponents();
-        termo = new StringBuilder("");
+        termo = new StringBuilder("0");
         visor = new StringBuilder("0");
         resultado = 0d;
         atualizaVisor();
@@ -197,6 +197,11 @@ public class Calculadora extends javax.swing.JFrame {
         jButtonIgual.setMaximumSize(new java.awt.Dimension(50, 50));
         jButtonIgual.setMinimumSize(new java.awt.Dimension(50, 50));
         jButtonIgual.setPreferredSize(new java.awt.Dimension(60, 60));
+        jButtonIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIgualActionPerformed(evt);
+            }
+        });
 
         jButtonDividir.setText("/");
         jButtonDividir.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -469,7 +474,7 @@ public class Calculadora extends javax.swing.JFrame {
                 &&!s.endsWith("/")
                 &&!s.endsWith(".")){
             visor.append("/");
-            termo = new StringBuilder("");
+            termo = new StringBuilder("0");
         }
         
         atualizaVisor();
@@ -483,7 +488,7 @@ public class Calculadora extends javax.swing.JFrame {
                 &&!s.endsWith("/")
                 &&!s.endsWith(".")){
             visor.append("*");
-            termo = new StringBuilder("");
+            termo = new StringBuilder("0");
         }
         
         atualizaVisor();
@@ -497,7 +502,7 @@ public class Calculadora extends javax.swing.JFrame {
                 &&!s.endsWith("/")
                 &&!s.endsWith(".")){
             visor.append("-");
-            termo = new StringBuilder("");
+            termo = new StringBuilder("0");
         }
         
         atualizaVisor();
@@ -511,7 +516,7 @@ public class Calculadora extends javax.swing.JFrame {
                 &&!s.endsWith("/")
                 &&!s.endsWith(".")){
             visor.append("+");
-            termo = new StringBuilder("");
+            termo = new StringBuilder("0");
         }
         
         atualizaVisor();
@@ -520,13 +525,23 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jButtonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCActionPerformed
         visor = new StringBuilder("0");
-        termo = new StringBuilder("");
+        termo = new StringBuilder("0");
         atualizaVisor();
+        calcular();
     }//GEN-LAST:event_jButtonCActionPerformed
 
     private void jButtonApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApagarActionPerformed
         removerUltimoCaractere();
     }//GEN-LAST:event_jButtonApagarActionPerformed
+
+    private void jButtonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIgualActionPerformed
+
+        visor = new StringBuilder(String.valueOf(resultado));
+        termo = new StringBuilder(String.valueOf(resultado));        
+
+        
+        atualizaVisor();
+    }//GEN-LAST:event_jButtonIgualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -588,20 +603,25 @@ public class Calculadora extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void removerUltimoCaractere() {
-        if (visor.length()>0){
+        if (visor.length()>0)
             visor.deleteCharAt(visor.length()-1);
+        if (termo.length()>0)
             termo.deleteCharAt(termo.length()-1);
-            atualizaVisor();
-        }else if (visor.toString().equals("")){
+        if (visor.length()==1&&visor.toString().startsWith("-"))
             visor = new StringBuilder("0");
-            termo = new StringBuilder("");
-        }
+        if (termo.length()==1&&termo.toString().startsWith("-"))
+            termo = new StringBuilder("0");
+        if (visor.length()==0)
+            visor = new StringBuilder("0");
+        if (termo.length()==0)
+            termo = new StringBuilder("0");
             
-                
-            
-            
-            atualizaVisor();
-            //calcular();
+        atualizaVisor();
+        
+
+        calcular();
+
+        
    
         
     }
@@ -612,6 +632,15 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void calcular() {
         String v = visor.toString();
+        boolean primeiroTermoNegativo = false;
+        
+        if (v.startsWith("-")){
+            v = v.substring(1, v.length());
+            primeiroTermoNegativo = true;
+            
+        }
+        
+        
         if ((v.endsWith("+"))
                 ||(v.endsWith("-"))
                 ||(v.endsWith("*"))
@@ -631,32 +660,41 @@ public class Calculadora extends javax.swing.JFrame {
         System.out.println(o.length());
         System.out.println(arrayVisor[0]);
         System.out.println("--------");
-        resultado = Double.parseDouble(arrayVisor[0]);
+        if (primeiroTermoNegativo)
+            resultado = -Double.parseDouble(arrayVisor[0]);
+        else
+            resultado = Double.parseDouble(arrayVisor[0]);
         
-        try {
             for (int i = 0; i < o.length(); i++){
-                switch (o.charAt(i)) {
-                    case '+':
-                        resultado += Double.parseDouble(arrayVisor[i+1]);
-                        break;
-                    case '-':
-                        resultado -= Double.parseDouble(arrayVisor[i+1]);
-                        break;
-                    case '*':
-                        resultado *= Double.parseDouble(arrayVisor[i+1]);
-                        break;
-                    case '/':
-                        resultado /= Double.parseDouble(arrayVisor[i+1]);
-                        break;
-                    default:
-                        break;
+                try{
+                    switch (o.charAt(i)) {
+                        case '+':
+                            resultado += Double.parseDouble(arrayVisor[i+1]);
+                            break;
+                        case '-':
+                            resultado -= Double.parseDouble(arrayVisor[i+1]);
+                            break;
+                        case '*':
+                            resultado *= Double.parseDouble(arrayVisor[i+1]);
+                            break;
+                        case '/':
+                            resultado /= Double.parseDouble(arrayVisor[i+1]);
+                            break;
+                        default:
+                            break;
+                    }                
+                } catch(Exception e){
+                    JOptionPane.showMessageDialog(rootPane, "Erro: "+e.getMessage());
                 }
+                
             }        
-        } catch(ArithmeticException e){
-            JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro: "+e.getMessage());
-        }
+
      
         System.out.println(resultado);
+        if (resultado.isInfinite()||resultado.isNaN()){
+            JOptionPane.showMessageDialog(rootPane, "Erro na operação");
+            resultado = 0d;
+        }
         jLabelTotal.setText("Total: " + resultado);
 
     }
