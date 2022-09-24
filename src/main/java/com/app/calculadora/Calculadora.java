@@ -61,6 +61,7 @@ public class Calculadora extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(264, 368));
         setMinimumSize(new java.awt.Dimension(264, 368));
+        setResizable(false);
 
         jLabelTitulo.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabelTitulo.setText("Calculadora");
